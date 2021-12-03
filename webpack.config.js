@@ -136,22 +136,16 @@ module.exports = (env, argv) => {
     ].filter(Boolean),
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: {
-      static: ["dist"],
+      static: ["dist", "public"],
       historyApiFallback: true,
-      hot: true,
-    },
-
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          moduleIds: "deterministic",
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all",
-          },
+      client: {
+        overlay: {
+          errors: true,
+          warnings: false,
         },
+        reconnect: true,
       },
+      hot: true,
     },
   };
 };

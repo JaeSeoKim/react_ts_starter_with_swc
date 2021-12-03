@@ -50,7 +50,7 @@ const UserCard: React.FC<UserCardProps> = ({
     <figure className={styles.conatiner}>
       <img className={styles.userImg} src={img.src} alt={img.alt} />
       <div className={styles.infoSection}>
-        <blockquote className={styles.quoute}>
+        <blockquote className={styles.quote}>
           <p>“{quote}”</p>
         </blockquote>
         <figcaption className={styles.figcaption}>
@@ -59,7 +59,7 @@ const UserCard: React.FC<UserCardProps> = ({
         </figcaption>
         <div className={styles.links}>
           {links.map((link) => (
-            <Icon {...link} />
+            <Icon key={`${link.type}-${link.link}`} {...link} />
           ))}
         </div>
       </div>

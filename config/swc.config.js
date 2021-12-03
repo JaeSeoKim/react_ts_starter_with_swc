@@ -1,4 +1,11 @@
 module.exports = {
+  /**
+   * @type {function({
+   *  isDev:boolean;
+   *  isTypeScript:boolean;
+   *  isJSX:boolean;
+   * }): import('@swc/core').Options}
+   **/
   getBaseSWCOptions: ({ isDev, isTypeScript, isJSX }) => ({
     jsc: {
       parser: {
