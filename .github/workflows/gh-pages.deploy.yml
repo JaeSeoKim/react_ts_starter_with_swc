@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
-          cache: 'npm'
+          node-version: "16"
+          cache: "npm"
       - run: npm install
 
       - name: Build
@@ -22,7 +22,7 @@ jobs:
           npm run build
 
       - name: Depoly
-      - uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
