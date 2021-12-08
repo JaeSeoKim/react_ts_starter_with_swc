@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const swcConfig = require("./config/swc.config");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
@@ -133,10 +134,13 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, "src/index.html"),
       }),
       analyzer && new BundleAnalyzerPlugin(),
+      new CopyPlugin({
+        patterns: [{ from: path.resolve(__dirname, "public") }],
+      }),
     ].filter(Boolean),
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: {
-      static: ["dist", "public"],
+      static: "dist",
       historyApiFallback: true,
       client: {
         overlay: {
