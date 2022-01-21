@@ -15,7 +15,7 @@ export interface UserCardProps {
   career: string;
   quote: string;
 
-  links: IconProps[];
+  links?: IconProps[];
 }
 
 interface IconProps {
@@ -25,11 +25,17 @@ interface IconProps {
 
 const Icon: React.FC<IconProps> = ({ type, link }) => {
   const Icon = (() => {
-    if (type === "42") return FtLogo;
-    if (type === "facebook") return FaceBookLogo;
-    if (type === "instagram") return InstagramLogo;
-    // if (type === "github")
-    return GitHubLogo;
+    switch (type) {
+      case "42":
+        return FtLogo;
+      case "facebook":
+        return FaceBookLogo;
+      case "instagram":
+        return InstagramLogo;
+      case "github":
+      default:
+        return GitHubLogo;
+    }
   })();
 
   return (
@@ -44,7 +50,7 @@ const UserCard: React.FC<UserCardProps> = ({
   name,
   career,
   quote,
-  links,
+  links = [],
 }) => {
   return (
     <figure className={styles.conatiner}>

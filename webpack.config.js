@@ -73,7 +73,7 @@ module.exports = (env, argv) => {
           type: "asset/resource",
         },
         {
-          test: /\.m?js$/,
+          test: /\.js$/,
           include: path.resolve(__dirname, "src"),
           exclude: /(node_modules|bower_components)/,
           use: {
@@ -131,11 +131,18 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src/index.html"),
+        template: path.resolve(__dirname, "public/index.html"),
       }),
       analyzer && new BundleAnalyzerPlugin(),
       new CopyPlugin({
-        patterns: [{ from: path.resolve(__dirname, "public") }],
+        patterns: [
+          {
+            from: path.resolve(__dirname, "public"),
+            globOptions: {
+              ignore: ["**/index.html"],
+            },
+          },
+        ],
       }),
     ].filter(Boolean),
     devtool: isDev ? "inline-source-map" : undefined,
